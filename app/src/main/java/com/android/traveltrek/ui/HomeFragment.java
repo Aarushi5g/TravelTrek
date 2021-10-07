@@ -1,19 +1,36 @@
 package com.android.traveltrek.ui;
 
+import android.app.Activity;
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.android.traveltrek.R;
 import com.android.traveltrek.databinding.FragmentHomeBinding;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptor;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.CameraPosition;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 
 import org.imaginativeworld.whynotimagecarousel.ImageCarousel;
 import org.imaginativeworld.whynotimagecarousel.model.CarouselItem;
@@ -23,19 +40,80 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class HomeFragment extends Fragment {
 
-    private FragmentHomeBinding binding;
+    public HomeFragment() {
+        // Required empty public constructor
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+    }
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        binding = FragmentHomeBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
 
-        ImageCarousel carousel = binding.carousel;
+        View view = inflater.inflate(R.layout.fragment_home, container, false);
+
+        SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.mapView);  //use SuppoprtMapFragment for using in fragment instead of activity  MapFragment = activity   SupportMapFragment = fragment
+        mapFragment.getMapAsync(new OnMapReadyCallback() {
+            @Override
+            public void onMapReady(GoogleMap mMap) {
+                mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+
+                mMap.clear(); //clear old markers
+
+                CameraPosition googlePlex = CameraPosition.builder()
+                        .target(new LatLng(25.276987,55.296249))
+                        .zoom(1)
+                        .bearing(0)
+                        .tilt(45)
+                        .build();
+
+                mMap.animateCamera(CameraUpdateFactory.newCameraPosition(googlePlex), 3000, null);
+
+                mMap.addMarker(new MarkerOptions()
+                        .position(new LatLng(48.864716, 2.349014))
+                        .title("Paris")
+                        .snippet("Place : Eiffel-Tower")
+                        .icon(BitmapDescriptorFactory.fromBitmap(createCustomMarker(getActivity(),R.drawable.paris,"Manish hotel"))));
+
+                mMap.addMarker(new MarkerOptions()
+                        .position(new LatLng(25.276987,55.296249))
+                        .title("Dubai")
+                        .snippet("Place : Burj AI Arab")
+                        .icon(BitmapDescriptorFactory.fromBitmap(createCustomMarker(getActivity(),R.drawable.dubai,"Manish hotel"))));
+
+                mMap.addMarker(new MarkerOptions()
+                        .position(new LatLng(29.238478,76.431885))
+                        .title("India")
+                        .snippet("Place : Taj-Mahal")
+                        .icon(BitmapDescriptorFactory.fromBitmap(createCustomMarker(getActivity(),R.drawable.india,"Manish hotel"))));
+
+                mMap.addMarker(new MarkerOptions()
+                        .position(new LatLng(39.916668,116.383331))
+                        .title("China")
+                        .snippet("Place : Great wall of china")
+                        .icon(BitmapDescriptorFactory.fromBitmap(createCustomMarker(getActivity(),R.drawable.china,"Manish hotel"))));
+
+
+                mMap.addMarker(new MarkerOptions()
+                        .position(new LatLng(30.033333,	31.233334))
+                        .title("USA")
+                        .snippet("Place : Cairo")
+                        .icon(BitmapDescriptorFactory.fromBitmap(createCustomMarker(getActivity(),R.drawable.egypt,"Manish hotel"))));
+            }
+        });
+
+
+        ImageCarousel carousel = view.findViewById(R.id.carousel);
         carousel.registerLifecycle(getLifecycle());
 
-        List<CarouselItem> list = new ArrayList<>();
+        List<CarouselItem> list = new ArrayList<CarouselItem>();
 
         list.add(
                 new CarouselItem(
@@ -74,12 +152,38 @@ public class HomeFragment extends Fragment {
 
 
         carousel.setData(list);
-        return root;
+        return view;
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        binding = null;
+    private BitmapDescriptor bitmapDescriptorFromVector(Context context, int vectorResId) {
+        Drawable vectorDrawable = ContextCompat.getDrawable(context, vectorResId);
+        vectorDrawable.setBounds(0, 0, vectorDrawable.getIntrinsicWidth(), vectorDrawable.getIntrinsicHeight());
+        Bitmap bitmap = Bitmap.createBitmap(vectorDrawable.getIntrinsicWidth(), vectorDrawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmap);
+        vectorDrawable.draw(canvas);
+        return BitmapDescriptorFactory.fromBitmap(bitmap);
     }
+
+    public static Bitmap createCustomMarker(Context context, @DrawableRes int resource, String _name) {
+
+        View marker = ((LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.custom_marker, null);
+
+        CircleImageView markerImage = (CircleImageView) marker.findViewById(R.id.user_dp);
+        markerImage.setImageResource(resource);
+        TextView txt_name = (TextView)marker.findViewById(R.id.name);
+        txt_name.setText(_name);
+
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        ((Activity) context).getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        marker.setLayoutParams(new ViewGroup.LayoutParams(52, ViewGroup.LayoutParams.WRAP_CONTENT));
+        marker.measure(displayMetrics.widthPixels, displayMetrics.heightPixels);
+        marker.layout(0, 0, displayMetrics.widthPixels, displayMetrics.heightPixels);
+        marker.buildDrawingCache();
+        Bitmap bitmap = Bitmap.createBitmap(marker.getMeasuredWidth(), marker.getMeasuredHeight(), Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmap);
+        marker.draw(canvas);
+
+        return bitmap;
+    }
+    
 }
