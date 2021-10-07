@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -13,13 +14,15 @@
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_width="100dp"
+        app:tint="@color/darktheme"
+        android:layout_marginTop="25dp"
+        android:layout_height="100dp"
         android:layout_centerInParent="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/profile" />
+        app:srcCompat="@drawable/ic_baseline_person_24" />
 
     <TextView
         android:id="@+id/register"
@@ -28,8 +31,9 @@
         android:layout_marginTop="8dp"
         android:text="Register"
         android:textColor="#000000"
-        android:textSize="30dp"
+        android:textSize="25dp"
         android:textStyle="bold"
+        android:fontFamily="@font/poppins_medium"
         app:layout_constraintEnd_toEndOf="@+id/imageView2"
         app:layout_constraintStart_toStartOf="@+id/imageView2"
         app:layout_constraintTop_toBottomOf="@+id/imageView2" />
@@ -37,15 +41,17 @@
     <EditText
         android:id="@+id/username"
         android:layout_width="0dp"
+        android:textSize="15sp"
+        android:paddingLeft="20dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
         android:layout_marginLeft="50dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="50dp"
         android:layout_marginRight="50dp"
         android:background="@drawable/input_bg"
         android:hint="Enter Username"
-        android:padding="10dp"
+        android:paddingBottom="10dp"
         android:paddingTop="10dp"
         android:textColorHint="@color/lighttheme"
         app:layout_constraintEnd_toEndOf="parent"
@@ -61,7 +67,10 @@
         android:ems="10"
         android:hint="Enter Email id"
         android:inputType="textPersonName"
-        android:padding="10dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:textSize="15sp"
+        android:paddingLeft="20dp"
         android:textColorHint="@color/lighttheme"
         app:layout_constraintEnd_toEndOf="@+id/username"
         app:layout_constraintHorizontal_bias="0.0"
@@ -77,7 +86,10 @@
         android:ems="10"
         android:hint="Enter password"
         android:inputType="textPassword"
-        android:padding="10dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:textSize="15sp"
+        android:paddingLeft="20dp"
         android:textColorHint="@color/lighttheme"
         app:layout_constraintEnd_toEndOf="@+id/emailid"
         app:layout_constraintStart_toStartOf="@+id/emailid"
@@ -92,7 +104,10 @@
         android:ems="10"
         android:hint="Enter Contact No."
         android:inputType="number"
-        android:padding="10dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:textSize="15sp"
+        android:paddingLeft="20dp"
         android:textColorHint="@color/lighttheme"
         app:layout_constraintEnd_toEndOf="@+id/registerpassword"
         app:layout_constraintStart_toStartOf="@+id/registerpassword"
@@ -107,7 +122,10 @@
         android:ems="10"
         android:hint="Enter Country"
         android:inputType="textPersonName"
-        android:padding="10dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:textSize="15sp"
+        android:paddingLeft="20dp"
         android:textColorHint="@color/lighttheme"
         app:layout_constraintEnd_toEndOf="@+id/registercontact"
         app:layout_constraintStart_toStartOf="@+id/registercontact"
@@ -118,27 +136,52 @@
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:background="#FFFFFF"
+        android:background="@drawable/rounded_button"
         android:text="Sign Up"
         android:textSize="15dp"
-        app:backgroundTint="@color/darktheme"
+        app:strokeColor="#232121"
         app:layout_constraintEnd_toEndOf="@+id/registercountry"
         app:layout_constraintStart_toStartOf="@+id/registercountry"
-        app:layout_constraintTop_toBottomOf="@+id/registercountry"
-        app:strokeColor="#232121" />
+        app:layout_constraintTop_toBottomOf="@+id/registercountry" />
 
-    <TextView
-        android:id="@+id/alreadytext"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:text="Already signed? Login"
-        android:textColor="#9C27B0"
-        android:textSize="15dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="25dp"
+        android:layout_marginBottom="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
+        app:layout_constraintTop_toBottomOf="@+id/button">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="Already have an account?"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:fontFamily="@font/poppins_regular"
+            android:textColor="@color/black"/>
+
+        <TextView
+            android:id="@+id/alreadytext"
+            android:textSize="12sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="Login"
+            android:textStyle="bold"
+            android:fontFamily="@font/poppins_regular"
+            android:textColor="@color/darktheme"
+            android:layout_marginLeft="5dp"/>
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -14,7 +14,7 @@
     <fragment
         android:id="@+id/navigation_post"
         android:name="com.android.traveltrek.ui.PostFragment"
-        android:label="Post"
+        android:label="Add a new Post"
         tools:layout="@layout/fragment_post" />
 
     <fragment
