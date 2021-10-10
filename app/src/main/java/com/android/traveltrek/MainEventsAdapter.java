@@ -1,6 +1,7 @@
-package com.android.traveltrek.ui;
+package com.android.traveltrek;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,18 +12,16 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.android.traveltrek.R;
-
 import java.util.List;
 
-public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
+public class MainEventsAdapter extends RecyclerView.Adapter<MainEventsAdapter.ViewHolder> {
 
     List<String> titles;
     List<Integer> images;
     LayoutInflater inflater;
     public static int position;
 
-    public Adapter(Context ctx, List<String> titles, List<Integer> images){
+    public MainEventsAdapter(Context ctx, List<String> titles, List<Integer> images){
         this.titles = titles;
         this.images = images;
         this.inflater = LayoutInflater.from(ctx);
@@ -60,7 +59,8 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
                 @Override
                 public void onClick(View v) {
                     position = getAdapterPosition()+1;
-                    Toast.makeText(v.getContext(), "Clicked -> " + position, Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent( itemView.getContext(), EventsActivity.class);
+                    itemView.getContext().startActivity(intent);
                 }
             });
         }
