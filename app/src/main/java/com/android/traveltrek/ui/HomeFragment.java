@@ -117,41 +117,85 @@ public class HomeFragment extends Fragment {
 
         list.add(
                 new CarouselItem(
-                        "https://images.unsplash.com/photo-1433838552652-f9a46b332c40?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80",
-                        "Photo by Daniela Cuevas on Unsplash"
+                        "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
+                        ""
                 )
         );
 
         list.add(
                 new CarouselItem(
                         "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-                        "Photo by Luca Bravo on Unsplash"
+                        ""
                 )
         );
 
         list.add(
                 new CarouselItem(
-                        "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
-                        "Photo by Dino Reichmuth on Unsplash"
+                        "https://images.unsplash.com/photo-1433838552652-f9a46b332c40?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80",
+                        ""
                 )
         );
 
         list.add(
                 new CarouselItem(
                         "https://images.unsplash.com/photo-1501785888041-af3ef285b470?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-                        "Photo by Pietro De Grandi on Unsplash"
+                        ""
                 )
         );
 
         list.add(
                 new CarouselItem(
                         "https://images.unsplash.com/photo-1506197603052-3cc9c3a201bd?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-                        "Photo by Drif Riadh on Unsplash"
+                        ""
                 )
         );
 
 
         carousel.setData(list);
+
+        ImageCarousel carousel1 = view.findViewById(R.id.carousel1);
+        carousel1.registerLifecycle(getLifecycle());
+
+        List<CarouselItem> list1 = new ArrayList<CarouselItem>();
+
+        list1.add(
+                new CarouselItem(
+                        "https://images.unsplash.com/photo-1433838552652-f9a46b332c40?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80",
+                        "Photo by Daniela Cuevas"
+                )
+        );
+
+        list1.add(
+                new CarouselItem(
+                        "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+                        "Photo by Luca Bravo"
+                )
+        );
+
+        list1.add(
+                new CarouselItem(
+                        "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
+                        "Photo by Dino Reichmuth"
+                )
+        );
+
+        list1.add(
+                new CarouselItem(
+                        "https://images.unsplash.com/photo-1501785888041-af3ef285b470?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+                        "Photo by Pietro De Grandi"
+                )
+        );
+
+        list1.add(
+                new CarouselItem(
+                        "https://images.unsplash.com/photo-1506197603052-3cc9c3a201bd?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+                        "Photo by Drif Riadh"
+                )
+        );
+
+
+        carousel1.setData(list1);
+
         return view;
     }
 

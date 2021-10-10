@@ -52,5 +52,10 @@ dependencies {
     implementation 'de.hdodenhof:circleimageview:3.1.0'
     implementation 'org.imaginativeworld.whynotimagecarousel:whynotimagecarousel:2.0.4'
 
+    implementation "androidx.cardview:cardview:1.0.0"
+    implementation 'com.google.android.material:material:1.4.0-alpha02'
+    // RecyclerView
+    implementation "androidx.recyclerview:recyclerview:1.2.0"
+
 
 }
