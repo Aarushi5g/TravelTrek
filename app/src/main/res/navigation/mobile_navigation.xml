@@ -20,7 +20,7 @@
     <fragment
         android:id="@+id/navigation_events"
         android:name="com.android.traveltrek.ui.EventsFragment"
-        android:label="Events"
+        android:label="TravelTrek"
         tools:layout="@layout/fragment_events" />
 
     <fragment
