@@ -222,7 +222,7 @@ public class HomeFragment extends Fragment {
 
         View marker = ((LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.custom_marker, null);
 
-        CircleImageView markerImage = (CircleImageView) marker.findViewById(R.id.profileimage);
+        CircleImageView markerImage = (CircleImageView) marker.findViewById(R.id.dp);
         markerImage.setImageResource(resource);
         TextView txt_name = (TextView)marker.findViewById(R.id.name);
         txt_name.setText(_name);
