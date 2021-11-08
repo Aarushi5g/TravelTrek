@@ -67,11 +67,11 @@
         app:layout_constraintTop_toBottomOf="@id/recent_posts"/>
 
 
-<!--    <com.google.android.gms.maps.MapView-->
-<!--        android:id="@+id/mapView"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="250dp"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/recent_posts"/>/>-->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/blog_post_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/carousel1"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

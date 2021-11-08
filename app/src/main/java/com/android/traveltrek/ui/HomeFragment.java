@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
@@ -14,19 +13,18 @@ import android.widget.TextView;
 
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.traveltrek.BlogPost;
+import com.android.traveltrek.BlogRecyclerAdapter;
+import com.android.traveltrek.MyBlog;
 import com.android.traveltrek.R;
-import com.android.traveltrek.databinding.FragmentHomeBinding;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
@@ -36,13 +34,16 @@ import org.imaginativeworld.whynotimagecarousel.ImageCarousel;
 import org.imaginativeworld.whynotimagecarousel.model.CarouselItem;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class HomeFragment extends Fragment {
+
+    RecyclerView blog_post_view;
+    List<MyBlog> myBlogList;
+    BlogRecyclerAdapter blogRecyclerAdapter;
+
 
     public HomeFragment() {
         // Required empty public constructor
@@ -56,8 +57,24 @@ public class HomeFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-
         View view = inflater.inflate(R.layout.fragment_home, container, false);
+
+        /* Blog Posts On Home screen start*/
+
+        blog_post_view = view.findViewById(R.id.blog_post_view);
+        blog_post_view.setHasFixedSize(true);
+        blog_post_view.setLayoutManager(new GridLayoutManager(getContext(),1));
+
+        myBlogList = new ArrayList<>();
+        myBlogList.add(new MyBlog("Meow","Nature","This cat is very special"));
+        myBlogList.add(new MyBlog("Dog","World","This dog is very special"));
+        myBlogList.add(new MyBlog("James","Tradtional","This Nature is very special"));
+        blogRecyclerAdapter = new BlogRecyclerAdapter(getContext(),myBlogList);
+        blog_post_view.setAdapter(blogRecyclerAdapter);
+
+        /* ending */
+
+
 
         SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.mapView);  //use SuppoprtMapFragment for using in fragment instead of activity  MapFragment = activity   SupportMapFragment = fragment
         mapFragment.getMapAsync(new OnMapReadyCallback() {
@@ -199,14 +216,7 @@ public class HomeFragment extends Fragment {
         return view;
     }
 
-    private BitmapDescriptor bitmapDescriptorFromVector(Context context, int vectorResId) {
-        Drawable vectorDrawable = ContextCompat.getDrawable(context, vectorResId);
-        vectorDrawable.setBounds(0, 0, vectorDrawable.getIntrinsicWidth(), vectorDrawable.getIntrinsicHeight());
-        Bitmap bitmap = Bitmap.createBitmap(vectorDrawable.getIntrinsicWidth(), vectorDrawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
-        Canvas canvas = new Canvas(bitmap);
-        vectorDrawable.draw(canvas);
-        return BitmapDescriptorFactory.fromBitmap(bitmap);
-    }
+
 
     public static Bitmap createCustomMarker(Context context, @DrawableRes int resource, String _name) {
 
