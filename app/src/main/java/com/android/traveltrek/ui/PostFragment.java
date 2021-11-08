@@ -32,6 +32,7 @@ public class PostFragment extends Fragment {
         cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 showFileChooser();
             }
         });

@@ -58,7 +58,7 @@
         app:layout_constraintTop_toBottomOf="@+id/logintext" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/password"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
@@ -83,9 +83,9 @@
         android:background="@drawable/rounded_button"
         android:text="Sign In"
         android:textSize="15dp"
-        app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName"
-        app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/password"
+        app:layout_constraintStart_toStartOf="@+id/password"
+        app:layout_constraintTop_toBottomOf="@+id/password"
         app:strokeColor="#232121" />
 
     <Button

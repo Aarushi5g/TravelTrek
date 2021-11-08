@@ -80,32 +80,32 @@ public class HomeFragment extends Fragment {
                         .position(new LatLng(48.864716, 2.349014))
                         .title("Paris")
                         .snippet("Place : Eiffel-Tower")
-                        .icon(BitmapDescriptorFactory.fromBitmap(createCustomMarker(getActivity(),R.drawable.paris,"Manish hotel"))));
+                        .icon(BitmapDescriptorFactory.fromBitmap(createCustomMarker(getActivity(),R.drawable.paris,"place"))));
 
                 mMap.addMarker(new MarkerOptions()
                         .position(new LatLng(25.276987,55.296249))
                         .title("Dubai")
                         .snippet("Place : Burj AI Arab")
-                        .icon(BitmapDescriptorFactory.fromBitmap(createCustomMarker(getActivity(),R.drawable.dubai,"Manish hotel"))));
+                        .icon(BitmapDescriptorFactory.fromBitmap(createCustomMarker(getActivity(),R.drawable.dubai,"place"))));
 
                 mMap.addMarker(new MarkerOptions()
                         .position(new LatLng(29.238478,76.431885))
                         .title("India")
                         .snippet("Place : Taj-Mahal")
-                        .icon(BitmapDescriptorFactory.fromBitmap(createCustomMarker(getActivity(),R.drawable.india,"Manish hotel"))));
+                        .icon(BitmapDescriptorFactory.fromBitmap(createCustomMarker(getActivity(),R.drawable.india,"place"))));
 
                 mMap.addMarker(new MarkerOptions()
                         .position(new LatLng(39.916668,116.383331))
                         .title("China")
                         .snippet("Place : Great wall of china")
-                        .icon(BitmapDescriptorFactory.fromBitmap(createCustomMarker(getActivity(),R.drawable.china,"Manish hotel"))));
+                        .icon(BitmapDescriptorFactory.fromBitmap(createCustomMarker(getActivity(),R.drawable.china,"place"))));
 
 
                 mMap.addMarker(new MarkerOptions()
                         .position(new LatLng(30.033333,	31.233334))
                         .title("USA")
                         .snippet("Place : Cairo")
-                        .icon(BitmapDescriptorFactory.fromBitmap(createCustomMarker(getActivity(),R.drawable.egypt,"Manish hotel"))));
+                        .icon(BitmapDescriptorFactory.fromBitmap(createCustomMarker(getActivity(),R.drawable.egypt,"place"))));
             }
         });
 
@@ -199,22 +199,13 @@ public class HomeFragment extends Fragment {
         return view;
     }
 
-    private BitmapDescriptor bitmapDescriptorFromVector(Context context, int vectorResId) {
-        Drawable vectorDrawable = ContextCompat.getDrawable(context, vectorResId);
-        vectorDrawable.setBounds(0, 0, vectorDrawable.getIntrinsicWidth(), vectorDrawable.getIntrinsicHeight());
-        Bitmap bitmap = Bitmap.createBitmap(vectorDrawable.getIntrinsicWidth(), vectorDrawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
-        Canvas canvas = new Canvas(bitmap);
-        vectorDrawable.draw(canvas);
-        return BitmapDescriptorFactory.fromBitmap(bitmap);
-    }
-
     public static Bitmap createCustomMarker(Context context, @DrawableRes int resource, String _name) {
 
         View marker = ((LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.custom_marker, null);
 
-        CircleImageView markerImage = (CircleImageView) marker.findViewById(R.id.user_dp);
+        CircleImageView markerImage = marker.findViewById(R.id.dp);
         markerImage.setImageResource(resource);
-        TextView txt_name = (TextView)marker.findViewById(R.id.name);
+        TextView txt_name = marker.findViewById(R.id.name);
         txt_name.setText(_name);
 
         DisplayMetrics displayMetrics = new DisplayMetrics();
