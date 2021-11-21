@@ -9,14 +9,15 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class BlogPost extends RecyclerView.ViewHolder {
-    public TextView title, description, category;
-    public ImageView whatsapp;
+    public TextView title, description, location;
+    public ImageView imageURL, whatsapp;
 
     public BlogPost(@NonNull View itemView) {
         super(itemView);
         title = itemView.findViewById(R.id.username);
-        category = itemView.findViewById(R.id.category);
+        location = itemView.findViewById(R.id.location);
         description = itemView.findViewById(R.id.desc);
+        imageURL = itemView.findViewById(R.id.img_post);
         whatsapp = itemView.findViewById(R.id.whatsapp);
     }
 }

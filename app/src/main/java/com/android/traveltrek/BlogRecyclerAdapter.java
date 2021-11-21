@@ -10,6 +10,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.List;
 
 public class BlogRecyclerAdapter extends RecyclerView.Adapter<BlogPost> {
@@ -31,8 +33,9 @@ public class BlogRecyclerAdapter extends RecyclerView.Adapter<BlogPost> {
     @Override
     public void onBindViewHolder(@NonNull BlogPost holder, int position) {
        holder.title.setText(blog_list.get(position).getTitle());
-       holder.category.setText(blog_list.get(position).getCategory());
-       holder.description.setText(blog_list.get(position).getDescription());
+       holder.location.setText(blog_list.get(position).getLocation());
+       holder.description.setText(blog_list.get(position).getDesc());
+       Picasso.get().load(blog_list.get(position).getImageURL()).into(holder.imageURL);
 
        holder.whatsapp.setOnClickListener(new View.OnClickListener() {
            @Override
@@ -41,7 +44,7 @@ public class BlogRecyclerAdapter extends RecyclerView.Adapter<BlogPost> {
                    Intent whatsappShare = new Intent(Intent.ACTION_SEND);
                    whatsappShare.setType("text/plane");
                    whatsappShare.setPackage("com.whatsapp");
-                   whatsappShare.putExtra(Intent.EXTRA_TEXT,"This new post has uploaded on TravelTrek with title: "+blog_list.get(position).getTitle()+", category: "+blog_list.get(position).getCategory()+", Caption: "+blog_list.get(position).getDescription());
+                   whatsappShare.putExtra(Intent.EXTRA_TEXT,"This new post has uploaded on TravelTrek with title: "+blog_list.get(position).getTitle()+", location: "+blog_list.get(position).getLocation()+", Caption: "+blog_list.get(position).getDesc());
                    context.startActivity(whatsappShare);
                } catch (Exception e) {
                    e.printStackTrace();

@@ -88,19 +88,14 @@
         app:layout_constraintTop_toBottomOf="@+id/password"
         app:strokeColor="#232121" />
 
-    <Button
-        android:id="@+id/signingoogle"
+    <com.google.android.gms.common.SignInButton
+        android:id="@+id/sign_in_button"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
-        android:drawableLeft="@drawable/ic_icons8_google"
-        android:text="Sign in with google"
-        android:textColor="#000000"
-        android:textSize="10dp"
-        app:backgroundTint="#FFFFFF"
         app:layout_constraintEnd_toEndOf="@+id/signin"
         app:layout_constraintStart_toStartOf="@+id/signin"
-        app:layout_constraintTop_toBottomOf="@+id/signin" />
+        app:layout_constraintTop_toBottomOf="@+id/signin"/>
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -110,7 +105,7 @@
         android:layout_marginBottom="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signingoogle">
+        app:layout_constraintTop_toBottomOf="@+id/sign_in_button">
 
         <TextView
             android:layout_width="wrap_content"

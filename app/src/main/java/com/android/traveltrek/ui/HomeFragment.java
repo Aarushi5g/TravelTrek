@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
@@ -29,6 +30,11 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import org.imaginativeworld.whynotimagecarousel.ImageCarousel;
 import org.imaginativeworld.whynotimagecarousel.model.CarouselItem;
@@ -41,8 +47,10 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class HomeFragment extends Fragment {
 
     RecyclerView blog_post_view;
-    List<MyBlog> myBlogList;
+    ArrayList<MyBlog> myBlogList;
     BlogRecyclerAdapter blogRecyclerAdapter;
+
+    DatabaseReference database;
 
 
     public HomeFragment() {
@@ -62,15 +70,30 @@ public class HomeFragment extends Fragment {
         /* Blog Posts On Home screen start*/
 
         blog_post_view = view.findViewById(R.id.blog_post_view);
+        database = FirebaseDatabase.getInstance().getReference("All_Image_Uploads_Database");
         blog_post_view.setHasFixedSize(true);
         blog_post_view.setLayoutManager(new GridLayoutManager(getContext(),1));
 
         myBlogList = new ArrayList<>();
-        myBlogList.add(new MyBlog("Meow","Nature","This cat is very special"));
-        myBlogList.add(new MyBlog("Dog","World","This dog is very special"));
-        myBlogList.add(new MyBlog("James","Tradtional","This Nature is very special"));
         blogRecyclerAdapter = new BlogRecyclerAdapter(getContext(),myBlogList);
-        blog_post_view.setAdapter(blogRecyclerAdapter);
+
+        database.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot dataSnapshot:snapshot.getChildren()){
+                    MyBlog myBlog = dataSnapshot.getValue(MyBlog.class);
+                    myBlogList.add(myBlog);
+                }
+                blog_post_view.setAdapter(blogRecyclerAdapter);
+                blogRecyclerAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(getContext(), "There is some error", Toast.LENGTH_SHORT).show();
+
+            }
+        });
 
         /* ending */
 
@@ -135,75 +158,32 @@ public class HomeFragment extends Fragment {
         list.add(
                 new CarouselItem(
                         "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
-                        ""
-                )
-        );
-
-        list.add(
-                new CarouselItem(
-                        "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-                        ""
-                )
-        );
-
-        list.add(
-                new CarouselItem(
-                        "https://images.unsplash.com/photo-1433838552652-f9a46b332c40?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80",
-                        ""
-                )
-        );
-
-        list.add(
-                new CarouselItem(
-                        "https://images.unsplash.com/photo-1501785888041-af3ef285b470?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-                        ""
-                )
-        );
-
-        list.add(
-                new CarouselItem(
-                        "https://images.unsplash.com/photo-1506197603052-3cc9c3a201bd?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-                        ""
-                )
-        );
-
-
-        carousel.setData(list);
-
-        ImageCarousel carousel1 = view.findViewById(R.id.carousel1);
-        carousel1.registerLifecycle(getLifecycle());
-
-        List<CarouselItem> list1 = new ArrayList<CarouselItem>();
-
-        list1.add(
-                new CarouselItem(
-                        "https://images.unsplash.com/photo-1433838552652-f9a46b332c40?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80",
                         "Photo by Daniela Cuevas"
                 )
         );
 
-        list1.add(
+        list.add(
                 new CarouselItem(
                         "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
                         "Photo by Luca Bravo"
                 )
         );
 
-        list1.add(
+        list.add(
                 new CarouselItem(
-                        "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
+                        "https://images.unsplash.com/photo-1433838552652-f9a46b332c40?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80",
                         "Photo by Dino Reichmuth"
                 )
         );
 
-        list1.add(
+        list.add(
                 new CarouselItem(
                         "https://images.unsplash.com/photo-1501785888041-af3ef285b470?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
                         "Photo by Pietro De Grandi"
                 )
         );
 
-        list1.add(
+        list.add(
                 new CarouselItem(
                         "https://images.unsplash.com/photo-1506197603052-3cc9c3a201bd?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
                         "Photo by Drif Riadh"
@@ -211,7 +191,7 @@ public class HomeFragment extends Fragment {
         );
 
 
-        carousel1.setData(list1);
+        carousel.setData(list);
 
         return view;
     }

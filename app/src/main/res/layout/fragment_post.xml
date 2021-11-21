@@ -62,7 +62,7 @@
                         </LinearLayout>
 
                         <ImageView
-                            android:id="@+id/image3"
+                            android:id="@+id/post_img"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:scaleType="centerCrop" />
@@ -92,25 +92,6 @@
                 android:textColor="@color/black"
                 android:textSize="14sp" />
 
-            <TextView
-                android:id="@+id/industry_header"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="start"
-                android:layout_marginLeft="6dp"
-                android:layout_marginTop="25dp"
-                android:fontFamily="@font/poppins_medium"
-                android:text="Category*"
-                android:textColor="@color/black"
-                android:textSize="14sp" />
-
-            <Spinner
-                android:id="@+id/spinner"
-                android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:layout_marginTop="4dp"
-                android:background="@drawable/input_bg"
-                android:dropDownVerticalOffset="52dp"/>
 
             <TextView
                 android:layout_width="wrap_content"

@@ -2,13 +2,19 @@ package com.android.traveltrek;
 
 public class MyBlog {
     String title = "";
-    String category = "";
-    String description = "";
+    String location = "";
+    String desc = "";
+    String imageURL = "";
 
-    public MyBlog(String title, String category, String description) {
+    public MyBlog(){
+
+    }
+
+    public MyBlog(String title, String location, String desc, String imageURL) {
         this.title = title;
-        this.category = category;
-        this.description = description;
+        this.location = location;
+        this.desc = desc;
+        this.imageURL = imageURL;
     }
 
     public String getTitle() {
@@ -19,19 +25,27 @@ public class MyBlog {
         this.title = title;
     }
 
-    public String getCategory() {
-        return category;
+    public String getLocation() {
+        return location;
     }
 
-    public void setCategory(String category) {
-        this.category = category;
+    public void setLocation(String location) {
+        this.location = location;
     }
 
-    public String getDescription() {
-        return description;
+    public String getDesc() {
+        return desc;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setDesc(String desc) {
+        this.desc = desc;
+    }
+
+    public String getImageURL() {
+        return imageURL;
+    }
+
+    public void setImageURL(String imageURL) {
+        this.imageURL = imageURL;
     }
 }
