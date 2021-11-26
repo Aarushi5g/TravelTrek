@@ -75,13 +75,6 @@
             android:fontFamily="@font/poppins_medium"
             android:textSize="15dp"/>
 
-        <ImageView
-            android:id="@+id/call"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingRight="5dp"
-            android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            android:src="@drawable/ic_baseline_contact_phone_24"/>
 
     </LinearLayout>
 
@@ -119,7 +112,7 @@
         android:layout_below="@id/profilelocation"/>
 
     <LinearLayout
-        android:id="@+id/profilefav"
+        android:id="@+id/profileabout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -131,261 +124,70 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingRight="5dp"
-            android:src="@drawable/ic_baseline_favorite_24"
-            app:tint="@color/red" />
+            android:src="@drawable/ic_baseline_emoji_people_24"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Your Favourites"
+            android:text="About Us"
             android:textColor="#000000"
             android:fontFamily="@font/poppins_medium"
             android:textSize="15dp"/>
 
     </LinearLayout>
 
-    <ScrollView
-        android:layout_marginLeft="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/profilefav"
-        android:layout_above="@id/divider2">
-
     <LinearLayout
-        android:layout_width="match_parent"
+        android:id="@+id/profilefeedback"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginVertical="10dp"
-        android:orientation="vertical">
+        android:orientation="horizontal"
+        android:layout_below="@id/profileabout"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp">
 
-<!--        Here will be the data of favourites-->
-
-        <LinearLayout
+        <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:layout_marginBottom="10dp">
+            android:paddingRight="5dp"
+            android:src="@drawable/ic_baseline_edit_24"/>
 
-            <ImageView
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="10dp"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:src="@drawable/paris"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Photo by Alex"
-                android:textColor="@color/black"/>
-
-        </LinearLayout>
-
-        <LinearLayout
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:layout_marginBottom="10dp">
-
-            <ImageView
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="10dp"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:src="@drawable/paris"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Photo by Alex"
-                android:textColor="@color/black"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:layout_marginBottom="10dp">
-
-            <ImageView
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="10dp"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:src="@drawable/paris"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Photo by Alex"
-                android:textColor="@color/black"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:layout_marginBottom="10dp">
-
-            <ImageView
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="10dp"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:src="@drawable/paris"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Photo by Alex"
-                android:textColor="@color/black"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:layout_marginBottom="10dp">
-
-            <ImageView
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="10dp"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:src="@drawable/paris"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Photo by Alex"
-                android:textColor="@color/black"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:layout_marginBottom="10dp">
-
-            <ImageView
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="10dp"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:src="@drawable/paris"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Photo by Alex"
-                android:textColor="@color/black"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:layout_marginBottom="10dp">
-
-            <ImageView
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="10dp"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:src="@drawable/paris"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Photo by Alex"
-                android:textColor="@color/black"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:layout_marginBottom="10dp">
-
-            <ImageView
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="10dp"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:src="@drawable/paris"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Photo by Alex"
-                android:textColor="@color/black"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:layout_marginBottom="10dp">
-
-            <ImageView
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="10dp"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:src="@drawable/paris"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Photo by Alex"
-                android:textColor="@color/black"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:layout_marginBottom="10dp">
-
-            <ImageView
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="10dp"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:src="@drawable/paris"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Photo by Alex"
-                android:textColor="@color/black"/>
-
-        </LinearLayout>
-
-
-
-
+            android:text="Feedback"
+            android:textColor="#000000"
+            android:fontFamily="@font/poppins_medium"
+            android:textSize="15dp"/>
 
     </LinearLayout>
 
-    </ScrollView>
+    <LinearLayout
+        android:id="@+id/profilecontact"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@id/profilefeedback"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp">
+
+        <ImageView
+            android:id="@+id/call"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingRight="5dp"
+            android:src="@drawable/ic_baseline_contact_phone_24"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Contact Us"
+            android:textColor="#000000"
+            android:fontFamily="@font/poppins_medium"
+            android:textSize="15dp"/>
+
+    </LinearLayout>
+
+
 
     <View
         android:id="@+id/divider2"
