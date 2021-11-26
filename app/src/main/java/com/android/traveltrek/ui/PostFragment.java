@@ -1,12 +1,15 @@
 package com.android.traveltrek.ui;
 
 import android.app.Activity;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.LayoutInflater;
@@ -22,6 +25,8 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.fragment.app.Fragment;
 
 import com.android.traveltrek.MainActivity;
@@ -87,11 +92,31 @@ public class PostFragment extends Fragment {
             }
         });
 
+        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.O){
+            NotificationChannel channel = new NotificationChannel("MyNotifications", "MyNotifications", NotificationManager.IMPORTANCE_DEFAULT);
+            NotificationManager manager = getContext().getSystemService(NotificationManager.class);
+            manager.createNotificationChannel(channel);
+        }
+
         add_post.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 UploadImageFileToFirebaseStorage(bb);
+
+                /* Notification source code */
+                NotificationCompat.Builder builder = new NotificationCompat.Builder(getContext(),"MyNotifications");
+                builder.setContentTitle("Post Uploaded");
+                builder.setContentText("Your post has successfully uploaded on recent posts section of TravelTrek app !!");
+                builder.setPriority(NotificationCompat.PRIORITY_HIGH);
+                builder.setCategory(NotificationCompat.CATEGORY_MESSAGE);
+                builder.setSmallIcon(R.drawable.ic_baseline_notifications_24);
+                builder.setAutoCancel(true);
+
+                NotificationManagerCompat manager = NotificationManagerCompat.from(getContext());
+                manager.notify(999,builder.build());
+
+                /* ending */
 
             }
         });
@@ -108,10 +133,7 @@ public class PostFragment extends Fragment {
                 ByteArrayOutputStream stream = new ByteArrayOutputStream();
                 bmp.compress(Bitmap.CompressFormat.JPEG, 100, stream);
                 bb = stream.toByteArray();
-
-//                Bitmap bitmap = BitmapFactory.decodeByteArray(byteArray, 0,
-//                        byteArray.length);
-
+                
                 img_post.setImageBitmap(bmp);
 
                 FilePathUri = data.getData();

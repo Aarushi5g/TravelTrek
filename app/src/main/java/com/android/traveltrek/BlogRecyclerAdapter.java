@@ -14,6 +14,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -36,6 +40,7 @@ public class BlogRecyclerAdapter extends RecyclerView.Adapter<BlogPost> {
 
     @Override
     public void onBindViewHolder(@NonNull BlogPost holder, int position) {
+
        holder.title.setText(blog_list.get(position).getTitle());
        holder.location.setText(blog_list.get(position).getLocation());
        holder.description.setText(blog_list.get(position).getDesc());

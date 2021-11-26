@@ -53,6 +53,7 @@ public class HomeFragment extends Fragment {
     DatabaseReference database;
 
 
+
     public HomeFragment() {
         // Required empty public constructor
     }
@@ -96,7 +97,6 @@ public class HomeFragment extends Fragment {
         });
 
         /* ending */
-
 
 
         SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.mapView);  //use SuppoprtMapFragment for using in fragment instead of activity  MapFragment = activity   SupportMapFragment = fragment
