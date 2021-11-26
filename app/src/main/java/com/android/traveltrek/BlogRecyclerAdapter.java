@@ -2,6 +2,10 @@ package com.android.traveltrek;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.net.Uri;
+import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,14 +45,21 @@ public class BlogRecyclerAdapter extends RecyclerView.Adapter<BlogPost> {
            @Override
            public void onClick(View v) {
                try {
-                   Intent whatsappShare = new Intent(Intent.ACTION_SEND);
-                   whatsappShare.setType("text/plane");
-                   whatsappShare.setPackage("com.whatsapp");
-                   whatsappShare.putExtra(Intent.EXTRA_TEXT,"This new post has uploaded on TravelTrek with title: "+blog_list.get(position).getTitle()+", location: "+blog_list.get(position).getLocation()+", Caption: "+blog_list.get(position).getDesc());
-                   context.startActivity(whatsappShare);
+                   BitmapDrawable drawable = (BitmapDrawable)holder.imageURL.getDrawable();
+                   Bitmap bitmap = drawable.getBitmap();
+
+                   String bitmapPath = MediaStore.Images.Media.insertImage(context.getContentResolver(),bitmap,"title",null);
+                   Uri uri = Uri.parse(bitmapPath);
+
+                   Intent intent = new Intent(Intent.ACTION_SEND);
+                   intent.setType("image/*");
+                   intent.putExtra(Intent.EXTRA_STREAM,uri);
+                   intent.putExtra(Intent.EXTRA_TEXT,"This new post has uploaded on TravelTrek with the Caption: "+blog_list.get(position).getDesc());
+                   context.startActivity(Intent.createChooser(intent,"Share"));
                } catch (Exception e) {
                    e.printStackTrace();
                }
+
            }
        });
     }

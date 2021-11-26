@@ -72,13 +72,16 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/img_post" />
 
-            <ImageView
+            <Button
                 android:id="@+id/whatsapp"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:src="@drawable/whatsapp"
-                app:layout_constraintTop_toBottomOf="@id/desc"
-                android:layout_marginVertical="10dp"/>
+                android:layout_width="120dp"
+                android:layout_height="40dp"
+                android:layout_marginVertical="10dp"
+                android:drawableRight="@drawable/ic_baseline_share_24"
+                android:text="Share"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/desc" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
