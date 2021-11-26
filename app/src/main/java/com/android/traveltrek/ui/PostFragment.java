@@ -1,8 +1,13 @@
 package com.android.traveltrek.ui;
 
 import android.app.Activity;
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.ProgressDialog;
 import android.content.ContentResolver;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -22,7 +27,10 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
+import androidx.core.app.NotificationCompat;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.android.traveltrek.MainActivity;
 import com.android.traveltrek.PostUploadInfo;
@@ -92,11 +100,27 @@ public class PostFragment extends Fragment {
             public void onClick(View v) {
 
                 UploadImageFileToFirebaseStorage(bb);
+                notifyThis();
 
             }
         });
 
         return view;
+    }
+
+    public void notifyThis() {
+        NotificationManager notificationManager = (NotificationManager) getActivity().getSystemService(Context.NOTIFICATION_SERVICE);
+
+        String MyText = "Reminder";
+        Notification mNotification = new Notification(R.drawable.whatsapp, MyText, System.currentTimeMillis() );
+        //The three parameters are: 1. an icon, 2. a title, 3. time when the notification appears
+
+        String MyNotificationTitle = "Medicine!";
+        String MyNotificationText  = "Don't forget to take your medicine!";
+
+        int NOTIFICATION_ID = 1;
+        notificationManager.notify(NOTIFICATION_ID , mNotification);
+        //We are passing the notification to the NotificationManager with a unique id.
     }
 
     @Override

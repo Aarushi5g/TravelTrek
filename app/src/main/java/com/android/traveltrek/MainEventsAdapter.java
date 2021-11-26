@@ -12,16 +12,18 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.List;
 
 public class MainEventsAdapter extends RecyclerView.Adapter<MainEventsAdapter.ViewHolder> {
 
     List<String> titles;
-    List<Integer> images;
+    List<String> images;
     LayoutInflater inflater;
     public static int position;
 
-    public MainEventsAdapter(Context ctx, List<String> titles, List<Integer> images){
+    public MainEventsAdapter(Context ctx, List<String> titles, List<String> images){
         this.titles = titles;
         this.images = images;
         this.inflater = LayoutInflater.from(ctx);
@@ -38,7 +40,7 @@ public class MainEventsAdapter extends RecyclerView.Adapter<MainEventsAdapter.Vi
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.title.setText(titles.get(position));
-        holder.gridIcon.setImageResource(images.get(position));
+        Picasso.get().load(images.get(position)).into(holder.gridIcon);
     }
 
     @Override
@@ -58,8 +60,9 @@ public class MainEventsAdapter extends RecyclerView.Adapter<MainEventsAdapter.Vi
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    position = getAdapterPosition()+1;
+                    position = getAdapterPosition();
                     Intent intent = new Intent( itemView.getContext(), EventsActivity.class);
+                    intent.putExtra("Country", titles.get(position));
                     itemView.getContext().startActivity(intent);
                 }
             });

@@ -30,8 +30,6 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText inputEmail, inputPassword, inputUsername, inputContact, inputCountry;
     private Button btnSignUp;
     private FirebaseAuth auth;
-    FirebaseDatabase firebaseDatabase;
-    DatabaseReference databaseReference;
     UserInfo userInfo;
 
     @Override
@@ -50,10 +48,6 @@ public class RegisterActivity extends AppCompatActivity {
         inputContact = (EditText) findViewById(R.id.registercontact);
         inputUsername = (EditText) findViewById(R.id.username);
         inputCountry = (EditText) findViewById(R.id.registercountry);
-
-        firebaseDatabase = FirebaseDatabase.getInstance();
-        databaseReference = firebaseDatabase.getReference("UserInfo");
-        userInfo = new UserInfo();
 
         getSupportActionBar().hide();
 
@@ -105,8 +99,6 @@ public class RegisterActivity extends AppCompatActivity {
                     return;
                 }
 
-                addDatatoFirebase(username, contact, country, email);
-
                 //create user
                 auth.createUserWithEmailAndPassword(email, password)
                         .addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<AuthResult>() {
@@ -122,24 +114,6 @@ public class RegisterActivity extends AppCompatActivity {
                             }
                         });
 
-            }
-
-            private void addDatatoFirebase(String username, String contact, String country, String email) {
-                userInfo.setUsername(username);
-                userInfo.setContact(contact);
-                userInfo.setCountry(country);
-                userInfo.setEmail(email);
-
-                databaseReference.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        databaseReference.setValue(userInfo);
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-                        }
-                });
             }
         });
 
