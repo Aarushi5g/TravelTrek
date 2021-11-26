@@ -43,8 +43,8 @@ public class EventsActivity extends AppCompatActivity implements EventsAdapter.I
 
         // set up the RecyclerView
         RecyclerView recyclerView = findViewById(R.id.events);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new EventsAdapter(this, eventNames, eventDesc, eventLocations, eventTimes, eventTypes, eventURLs);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+        adapter = new EventsAdapter(getApplicationContext(), eventNames, eventDesc, eventLocations, eventTimes, eventTypes, eventURLs);
         adapter.setClickListener(this);
 
         Intent getResults = getIntent();

@@ -1,6 +1,7 @@
 package com.android.traveltrek;
 
 import android.content.Context;
+import android.speech.tts.TextToSpeech;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
+import java.util.Locale;
 
 public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.ViewHolder> {
 
@@ -23,6 +25,7 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.ViewHolder
     private List<String> DataDesc;
     private LayoutInflater mInflater;
     private ItemClickListener mClickListener;
+    private Context context;
 
     // data is passed into the constructor
     EventsAdapter(Context context, List<String> dataNames, List<String> dataDesc, List<String> dataLocations, List<String> dataTimes, List<String> dataTypes, List<String> dataURLs) {
@@ -33,6 +36,7 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.ViewHolder
         this.DataTimes = dataTimes;
         this.DataTypes = dataTypes;
         this.DataURLs = dataURLs;
+        this.context = context;
     }
 
     // inflates the row layout from xml when needed
@@ -51,6 +55,23 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.ViewHolder
         holder.EventDesc.setText(DataDesc.get(position));
         holder.EventLocation.setText(DataLocations.get(position));
         Picasso.get().load(DataURLs.get(position)).into(holder.EventURL);
+
+        holder.textToSpeech = new TextToSpeech(context, new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int status) {
+                if(status == TextToSpeech.SUCCESS){
+                    int lang = holder.textToSpeech.setLanguage(Locale.ENGLISH);
+                }
+            }
+        });
+
+        holder.Audioimg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String s = DataDesc.get(position);
+                int speech = holder.textToSpeech.speak(s,TextToSpeech.QUEUE_FLUSH,null);
+            }
+        });
     }
 
     // total number of rows
@@ -68,6 +89,8 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.ViewHolder
         TextView EventLocation;
         TextView EventTime;
         ImageView EventURL;
+        ImageView Audioimg;
+        TextToSpeech textToSpeech;
 
         ViewHolder(View itemView) {
             super(itemView);
@@ -77,6 +100,7 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.ViewHolder
             EventTime = itemView.findViewById(R.id.time);
             EventLocation = itemView.findViewById(R.id.loc);
             EventURL = itemView.findViewById(R.id.img);
+            Audioimg = itemView.findViewById(R.id.audio);
             itemView.setOnClickListener(this);
         }
 
