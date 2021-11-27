@@ -188,37 +188,30 @@
     </LinearLayout>
 
 
-
-    <View
-        android:id="@+id/divider2"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#000"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="100dp"/>
-
     <LinearLayout
         android:id="@+id/profilelogout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginBottom="65dp"
-        android:layout_alignParentBottom="true">
+        android:orientation="horizontal"
+        android:layout_below="@id/profilecontact"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp">
 
-     <ImageView
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:src="@drawable/ic_baseline_login_24"
-         android:paddingRight="10dp"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingRight="5dp"
+            android:src="@drawable/ic_baseline_login_24"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Log Out"
-        android:textColor="#000000"
-        android:fontFamily="@font/poppins_medium"
-        android:textSize="15dp"
-        android:textStyle="bold" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Log Out"
+            android:textColor="#000000"
+            android:fontFamily="@font/poppins_medium"
+            android:textSize="15dp"/>
     </LinearLayout>
+
+
 
 </RelativeLayout>
