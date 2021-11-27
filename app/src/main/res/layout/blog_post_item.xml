@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto">
@@ -11,7 +11,6 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:elevation="15dp"
-        android:padding="20dp"
         app:cardCornerRadius="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -27,7 +26,7 @@
                 android:id="@+id/userimg"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:src="@drawable/profile1"
+                android:src="@drawable/profile"
                 app:civ_border_color="#FF000000"
                 app:civ_border_width="0dp" />
 
@@ -55,24 +54,25 @@
             <ImageView
                 android:id="@+id/img_post"
                 android:layout_width="0dp"
-                android:layout_height="150dp"
+                android:layout_height="170dp"
                 android:layout_marginVertical="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/userimg"
-                app:srcCompat="@drawable/sample1" />
+                app:srcCompat="@drawable/sample1"/>
 
             <TextView
                 android:id="@+id/desc"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
+                android:layout_marginTop="15dp"
                 android:text="Description......."
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/img_post" />
 
             <LinearLayout
+                android:id="@+id/share"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintEnd_toEndOf="@+id/desc"
@@ -81,8 +81,9 @@
 
                 <Button
                     android:id="@+id/whatsapp"
+                    android:layout_marginTop="10dp"
                     android:layout_width="120dp"
-                    android:layout_height="40dp"
+                    android:layout_height="50dp"
                     android:drawableRight="@drawable/ic_baseline_share_24"
                     android:text="Share"
                     app:layout_constraintEnd_toEndOf="parent"

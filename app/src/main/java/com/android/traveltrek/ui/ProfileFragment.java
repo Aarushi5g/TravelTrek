@@ -28,15 +28,18 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 public class ProfileFragment extends Fragment {
 
     TextView name, mail;
+    ImageView img;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -46,6 +49,8 @@ public class ProfileFragment extends Fragment {
         LinearLayout log_out = (LinearLayout) view.findViewById(R.id.profilelogout);
         name = view.findViewById(R.id.profilename);
         mail = view.findViewById(R.id.profileid);
+        img = view.findViewById(R.id.profileimage);
+
         LinearLayout about = (LinearLayout)view.findViewById(R.id.profileabout);
         LinearLayout feedback = (LinearLayout)view.findViewById(R.id.profilefeedback);
         LinearLayout contact = (LinearLayout)view.findViewById(R.id.profilecontact);
@@ -55,13 +60,20 @@ public class ProfileFragment extends Fragment {
         if(signInAccount!=null){
             name.setText(signInAccount.getDisplayName());
             mail.setText(signInAccount.getEmail());
+            Picasso.get().load(signInAccount.getPhotoUrl()).into(img);
+        }
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            String email = user.getEmail();
+            mail.setText(email);
         }
 
         contact.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Intent.ACTION_DIAL);
-                intent.setData(Uri.parse("tel: 9555658898"));
+                intent.setData(Uri.parse("tel: 9555444389"));
                 startActivity(intent);
             }
         });
@@ -142,7 +154,7 @@ public class ProfileFragment extends Fragment {
                 myRef.child("FeedbackUsers").child(edtName.getText().toString()).child("Feedback").setValue(edtFeedback.getText().toString());
                 myRef.child("FeedbackUsers").child(edtName.getText().toString()).child("Name").setValue(edtName.getText().toString());
 
-                Toast.makeText(getContext(), "Thanks for your feedback...", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Thank you for your feedback!", Toast.LENGTH_SHORT).show();
 
             }
         });

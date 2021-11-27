@@ -35,11 +35,16 @@
             android:layout_height="wrap_content"
             android:text="Culture"/>
 
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1"/>
+
             <ImageView
                 android:id="@+id/audio"
+                android:layout_marginTop="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="right"
                 android:src="@drawable/ic_baseline_volume_up_24" />
 
         </LinearLayout>

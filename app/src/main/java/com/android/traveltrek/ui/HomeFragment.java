@@ -157,8 +157,8 @@ public class HomeFragment extends Fragment {
 
         list.add(
                 new CarouselItem(
-                        "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
-                        "Photo by Daniela Cuevas"
+                        "https://images.unsplash.com/photo-1501785888041-af3ef285b470?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+                        "Photo by Pietro De Grandi"
                 )
         );
 
@@ -178,8 +178,8 @@ public class HomeFragment extends Fragment {
 
         list.add(
                 new CarouselItem(
-                        "https://images.unsplash.com/photo-1501785888041-af3ef285b470?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-                        "Photo by Pietro De Grandi"
+                        "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
+                        "Photo by Daniela Cuevas"
                 )
         );
 

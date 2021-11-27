@@ -56,7 +56,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
-                                android:text="Add Photo/Video"
+                                android:text="Click a Photo"
                                 android:textColor="@color/darktheme"
                                 android:textSize="12sp" />
                         </LinearLayout>
@@ -100,7 +100,7 @@
                 android:layout_marginLeft="6dp"
                 android:layout_marginTop="25dp"
                 android:fontFamily="@font/poppins_medium"
-                android:text="Description"
+                android:text="Description*"
                 android:textColor="@color/black"
                 android:textSize="14sp" />
 
@@ -124,7 +124,7 @@
                 android:layout_marginLeft="6dp"
                 android:layout_marginTop="25dp"
                 android:fontFamily="@font/poppins_medium"
-                android:text="Location"
+                android:text="Location*"
                 android:textColor="@color/black"
                 android:textSize="14sp" />
 
