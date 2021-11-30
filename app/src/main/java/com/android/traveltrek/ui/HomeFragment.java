@@ -16,6 +16,7 @@ import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.traveltrek.BlogPost;
@@ -73,7 +74,7 @@ public class HomeFragment extends Fragment {
         blog_post_view = view.findViewById(R.id.blog_post_view);
         database = FirebaseDatabase.getInstance().getReference("All_Image_Uploads_Database");
         blog_post_view.setHasFixedSize(true);
-        blog_post_view.setLayoutManager(new GridLayoutManager(getContext(),1));
+        blog_post_view.setLayoutManager(new LinearLayoutManager(getContext()));
 
         myBlogList = new ArrayList<>();
         blogRecyclerAdapter = new BlogRecyclerAdapter(getContext(),myBlogList);
